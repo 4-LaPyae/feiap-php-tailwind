@@ -1,0 +1,97 @@
+<!-- <?php
+session_start();
+
+// Unset the session data
+unset($_SESSION['auth']);
+$conn = require_once 'database_connection.php';
+$error = "";
+// Process the login form submission
+if (isset($_POST["submit"])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+
+    // Retrieve user from the database based on the provided username
+    $query = "SELECT * FROM admins WHERE email = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('s', $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    // Verify the password
+    if ($result->num_rows === 1) {
+        $user = $result->fetch_assoc();
+        if (password_verify($password, $user['password'])) {
+            session_start();
+            $_SESSION['auth'] = true;
+            // Redirect to the new page with the user list as a URL parameter
+            $error = "";
+            header("Location: feiap2023admin.php");
+            exit();
+        } else {
+            // Password is incorrect
+            $error =  'Invalid Username or Password!.';
+        }
+    } else {
+        // User not found
+       $error = "User Not Found!";
+    }
+
+    // Close the database connection
+    $conn->close();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FEIAP | Login</title>
+    <link rel="shortcut icon" href="./images/FavLogo.png">
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+</head>
+
+<body>
+    <!-- component -->
+    <div class=" min-[1020px]:h-screen flex  flex min-[320px]:flex-col-reverse min-[1020px]:flex-row center">
+        <div class="flex min-[1020px]:w-1/2 bg-gradient-to-tr from-blue-800 to-purple-700 i justify-around items-center">
+            <div>
+                <h1 class="text-white font-bold text-4xl font-sans">FEIAP 2023 Myanmar</h1>
+                <p class="text-white mt-1">31st FEIAP General Assembly & 7th Special Distingished Lectures</p>
+                <p class="text-white italic mt-1">11-13 September,2023,Nay Pyi Taw,Myanmar</p>
+                <a href="./" type="submit" class="block w-28 bg-white text-indigo-800 mt-4 py-2 text-center rounded-2xl font-bold mb-2">Go To
+                    Home</a>
+            </div>
+        </div>
+        <div class="flex min-[1020px]:w-1/2 justify-center items-center bg-white">
+            <form class="bg-white" action="<?php echo $_SERVER['PHP_SELF'];  ?>" method="post">
+                <h1 class="text-gray-800 font-bold text-2xl mb-1">Hello Admin!</h1>
+                <p class="text-sm font-normal text-gray-600 mb-7">Welcome Back</p>
+                <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+                    </svg>
+                    <input class="pl-2 outline-none border-none" type="email" name="email" id="email" value="<?php echo $email ?? ""; ?>" placeholder="Email Address" />
+                </div>
+                <div class="flex items-center border-2 py-2 px-3 rounded-2xl">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                    </svg>
+                    <input class="pl-2 outline-none border-none" type="password" name="password" id="password" placeholder="Password" />
+                </div>
+                <div class="flex items-center py-2 px-3">
+                    <h2 class="text-red-900">
+                        <?php echo $error?>
+                    </h2>
+                </div>
+                <input type="submit" value="Login" name="submit" class="block w-full cursor-pointer bg-indigo-600 mt-4 py-2 rounded-2xl text-white font-semibold mb-2">
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html> -->

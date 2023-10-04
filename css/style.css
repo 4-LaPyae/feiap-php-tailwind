@@ -1,0 +1,42 @@
+#home-header {
+  background-image: url("../images/Banner4.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+#mobile-nav {
+  display: none;
+}
+
+@media only screen and (max-width: 764px) {
+  #home-header {
+    background-position: bottom;
+    height: 550px;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  #home-header {
+    background-position: bottom;
+    height: 450px;
+  }
+}
+@media only screen and (width < 425px) {
+  #hosted-container {
+    margin-bottom: 60px;
+    margin-top: 40px;
+  }
+  #officeimg #emailimg {
+    display: none;
+  }
+}
+/* @media only screen and (width < 480px) {
+  #aay {
+    width: 296px;
+    margin: auto;
+  }
+} */
